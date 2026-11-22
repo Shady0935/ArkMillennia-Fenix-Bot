@@ -82,7 +82,7 @@ class InviteTrackerService {
 
   async listGuilds() {
     return [...this.client.guilds.cache.values()].sort((a, b) => a.name.localeCompare(b.name)).map(guild => ({
-      id: guild.id, name: guild.name, iconUrl: guild.iconURL({ extension: 'png', size: 96 }),
+      id: guild.id, name: guild.name, iconUrl: guild.iconURL({ extension: 'png', size: 128 }),
       config: this.config(guild.id), capability: this.capability(guild),
     }));
   }

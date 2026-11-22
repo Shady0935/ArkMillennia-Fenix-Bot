@@ -3,6 +3,7 @@ const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&':
 export async function mount(target, { api }) {
   target.innerHTML = `<section class="tickets-page">
     <header class="tickets-heading"><div><span class="tickets-eyebrow">ARKMILLENNIA FENIX · SOPORTE</span><h1>Tickets</h1><p>Configura el centro de ayuda y gestiona las solicitudes de tu comunidad.</p></div><div class="tickets-stats"><span><b id="ticket-open-count">0</b> abiertos</span><span><b id="ticket-archived-count">0</b> archivados</span></div></header>
+    <p id="tickets-notice" class="tickets-notice" role="status" aria-live="polite" hidden></p>
     <div class="tickets-layout"><form id="tickets-form" class="tickets-card tickets-config">
       <div class="tickets-card-title"><div><h2>Configuración</h2><p>El panel publicado se actualiza al guardar y volver a publicarlo.</p></div><label class="tickets-switch millenniafenix-toggle-control"><input id="tickets-enabled" type="checkbox"><span class="millenniafenix-toggle-track"></span><span class="millenniafenix-toggle-text">Tickets activos</span></label></div>
       <div class="tickets-grid">
@@ -38,8 +39,9 @@ export async function mount(target, { api }) {
     if (response?.error) throw new Error(response.error);
     return response;
   };
-  const show = (message, error = false, type, key = 'tickets') => { if (message) api.toast(message, type || (error ? 'error' : 'success'), key); };
-  const hide = () => api.toast('', 'info', 'tickets');
+  const notice = $('#tickets-notice');
+  const show = (message, error = false) => { notice.textContent = String(message || ''); notice.classList.toggle('error', error); notice.hidden = !message; };
+  const hide = () => { notice.hidden = true; };
   const optionList = (items, selected, emptyLabel) => `<option value="">${escapeHtml(emptyLabel)}</option>${items.map(item => `<option value="${escapeHtml(item.id)}" ${item.id === selected ? 'selected' : ''}>${escapeHtml(item.name)}</option>`).join('')}`;
   const roleOptions = (selected, includeEmpty = true) => `${includeEmpty ? '<option value="">Sin restricción</option>' : '<option value="">Selecciona un rol</option>'}${state.roles.map(role => `<option value="${escapeHtml(role.id)}" ${role.id === selected ? 'selected' : ''}>${escapeHtml(role.name)}</option>`).join('')}`;
   const channelOptions = (type, selected, empty) => optionList(state.channels.filter(item => item.type === type), selected, empty);

@@ -93,7 +93,7 @@ async function mountView(module) {
     const error = document.createElement('p');
     error.className = 'extension-error';
     error.setAttribute('role', 'alert');
-    error.textContent = 'No se pudo abrir este módulo.';
+    error.textContent = `No se pudo abrir este módulo: ${error?.message || 'error desconocido'}`;
     target.replaceChildren(error);
   }
 }
