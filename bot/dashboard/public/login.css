@@ -4,7 +4,7 @@ body{margin:0;min-height:100vh;color:var(--ink);font:14px/1.5 var(--sans);backgr
 a{color:inherit}
 .login-page{min-height:100vh;display:grid;place-items:center;padding:32px 28px}
 .login-card{width:min(100%,1040px);min-height:570px;display:grid;grid-template-columns:1.08fr .92fr;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 30px 90px #0005}
-.login-visual{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:570px;padding:30px;background:linear-gradient(180deg,#080c0ed9 0%,#080c0e16 36%,#080c0ee6 100%),url('/assets/portal.webp') center/cover}
+.login-visual{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:570px;padding:30px;background:linear-gradient(180deg,#080c0ed9 0%,#080c0e16 36%,#080c0ee6 100%),url('/assets/ark-banner.png') 68% center/cover}
 .login-visual:after{position:absolute;inset:0;content:'';pointer-events:none;background:linear-gradient(90deg,#080c0e18,transparent 62%)}
 .login-brand,.login-mobile-brand{position:relative;z-index:1;display:flex;align-items:center;gap:12px;width:max-content;text-decoration:none}
 .login-brand img,.login-mobile-brand img{object-fit:contain;filter:drop-shadow(0 3px 12px #0008)}
