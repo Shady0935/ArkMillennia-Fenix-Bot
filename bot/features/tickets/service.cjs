@@ -39,7 +39,7 @@ class TicketService {
     this.storage = context.storage;
     this.guildId = String(context.guildId || '');
     this.adminRoleIds = new Set((context.adminRoleIds || []).map(String));
-    if (context.dashboardRoleId) this.adminRoleIds.add(String(context.dashboardRoleId));
+    for (const roleId of context.dashboardRoleIds || [context.dashboardRoleId]) if (roleId) this.adminRoleIds.add(String(roleId));
     this.config = clone(DEFAULT_CONFIG);
     this.publishedPanelDisplay = '';
     this.closed = false;

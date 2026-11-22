@@ -19,7 +19,7 @@ class InviteTrackerService {
     this.client = context.client;
     this.storage = context.storage;
     this.adminRoleIds = new Set((context.adminRoleIds || []).map(String));
-    if (context.dashboardRoleId) this.adminRoleIds.add(String(context.dashboardRoleId));
+    for (const roleId of context.dashboardRoleIds || [context.dashboardRoleId]) if (roleId) this.adminRoleIds.add(String(roleId));
     this.configs = {};
     this.snapshots = new Map();
     this.statuses = new Map();

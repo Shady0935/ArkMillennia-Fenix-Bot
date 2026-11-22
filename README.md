@@ -66,7 +66,7 @@ El proceso de Discord y la dashboard comparten el mismo runtime y la misma carga
 ## Instalación y arranque
 
 1. Copia `.env.example` a `.env`.
-2. Completa como mínimo `DISCORD_TOKEN`, `DISCORD_GUILD_ID`, `DASHBOARD_REQUIRED_ROLE_ID` y los datos `DB_*`.
+2. Completa como mínimo `DISCORD_TOKEN`, `DISCORD_GUILD_ID`, `DASHBOARD_REQUIRED_ROLE_IDS` y los datos `DB_*`.
 3. Para el inicio de sesión de la dashboard, completa `DISCORD_OAUTH_CLIENT_ID`, `DISCORD_OAUTH_CLIENT_SECRET` y `DASHBOARD_PUBLIC_URL`.
 4. Instala dependencias con `npm ci`.
 5. Inicia el bot con `npm start`.
@@ -81,7 +81,7 @@ En el Discord configurado, concede al bot los permisos de cada módulo. El gesto
 
 En Discord Developer Portal habilita **Server Members Intent** y **Message Content Intent**, que el proceso solicita al conectarse. Todas las funciones de Discord usan el único `DISCORD_GUILD_ID` configurado.
 
-La dashboard escucha en `DASHBOARD_HOST` y `DASHBOARD_PORT`. `DASHBOARD_REQUIRED_ROLE_ID` es el rol obligatorio para iniciar sesión. Cada módulo puede aplicar permisos adicionales con su función `canAccess`.
+La dashboard escucha en `DASHBOARD_HOST` y `DASHBOARD_PORT`. `DASHBOARD_REQUIRED_ROLE_IDS` admite varios IDs de rol separados por comas; todos esos rangos pueden iniciar sesión. Cada módulo puede aplicar permisos adicionales con su función `canAccess`.
 
 Mantén `.env` en el host y fuera de Git. El bot crea sus tablas MySQL al iniciar. La configuración y los datos de módulos, las sesiones de la dashboard, los borradores y las imágenes de anuncios se guardan en MySQL. `data/` solo se usa para importar datos de versiones antiguas cuando corresponda.
 
@@ -189,7 +189,7 @@ El servicio de la dashboard debe tener:
 
 `description`, `icon`, `order`, `client` y `styles` son opcionales. `icon` debe ser uno de los iconos Material disponibles: `extension`, `campaign`, `dashboard`, `group`, `dns`, `settings`, `monitoring`, `shield`, `workspace_premium`, `military_tech`, `sync_alt` o `history`. Los nombres de los archivos `client` y `styles` deben ser simples nombres de archivo, sin rutas.
 
-El rol `DASHBOARD_REQUIRED_ROLE_ID` es obligatorio para entrar al panel. Después, la dashboard evalúa `canAccess` para cada módulo; ser administrador del panel no omite esa comprobación. Así, cada módulo puede habilitarse para roles distintos.
+Al menos uno de los roles de `DASHBOARD_REQUIRED_ROLE_IDS` es obligatorio para entrar al panel. Después, la dashboard evalúa `canAccess` para cada módulo; ser administrador del panel no omite esa comprobación. Así, cada módulo puede habilitarse para roles distintos.
 
 ### Página dinámica integrada en el panel
 

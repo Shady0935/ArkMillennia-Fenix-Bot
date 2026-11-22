@@ -15,7 +15,7 @@ module.exports = {
       order: 5,
       client: 'dashboard.js',
       styles: ['dashboard.css'],
-      canAccess: member => !!context.dashboardRoleId && member?.roles?.cache?.has(context.dashboardRoleId),
+      canAccess: member => context.dashboardRoleIds.some(roleId => member?.roles?.cache?.has(roleId)),
       http: (req, res, next) => router(req, res, next),
     });
     context.on(Events.GuildMemberAdd, member => service.onMemberAdd(member));

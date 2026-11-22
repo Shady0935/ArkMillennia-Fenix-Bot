@@ -12,7 +12,7 @@ module.exports = {
       title: 'Registros de Discord',
       description: 'Configura registros de actividad para cada servidor conectado al bot',
       icon: 'history', order: 40, client: 'dashboard.js', styles: ['dashboard.css'],
-      canAccess: member => !!context.dashboardRoleId && member?.roles?.cache?.has(context.dashboardRoleId),
+      canAccess: member => context.dashboardRoleIds.some(roleId => member?.roles?.cache?.has(roleId)),
       http: (req, res, next) => router(req, res, next),
     });
 

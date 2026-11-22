@@ -71,7 +71,7 @@ class AnnouncementService {
   }
   canAccess(member) {
     if (!member || member.guild?.id !== this.context.guildId) return false;
-    return !!(this.context.dashboardRoleId && member.roles.cache.has(this.context.dashboardRoleId))
+    return (this.context.dashboardRoleIds || [this.context.dashboardRoleId]).some(roleId => roleId && member.roles.cache.has(roleId))
       || member.id === member.guild.ownerId || !!member.permissions?.has(PermissionFlagsBits.Administrator)
       || !!(this.config.admin_role_id && member.roles.cache.has(this.config.admin_role_id));
   }

@@ -13,9 +13,9 @@ const { installErrorMonitor } = require('./runtime/error-monitor.cjs');
 function configuration(env) {
   const roles=(env.DISCORD_ADMIN_ROLE_IDS||'').split(',').map(value=>value.trim()).filter(Boolean);
   if (!env.DISCORD_TOKEN || !/^[0-9]{17,20}$/.test(env.DISCORD_GUILD_ID||'') || roles.some(id=>!/^[0-9]{17,20}$/.test(id))) throw Error('Configura DISCORD_TOKEN y DISCORD_GUILD_ID en .env');
-  const dashboardRoleId=String(env.DASHBOARD_REQUIRED_ROLE_ID||'').trim();
-  if(!/^[0-9]{17,20}$/.test(dashboardRoleId))throw Error('Configura DASHBOARD_REQUIRED_ROLE_ID en .env');
-  return { token:env.DISCORD_TOKEN.trim(), guildId:env.DISCORD_GUILD_ID, dashboardRoleId, roles,
+  const dashboardRoleIds=String(env.DASHBOARD_REQUIRED_ROLE_IDS||env.DASHBOARD_REQUIRED_ROLE_ID||'').split(',').map(id=>id.trim()).filter(Boolean);
+  if(!dashboardRoleIds.length||dashboardRoleIds.some(id=>!/^[0-9]{17,20}$/.test(id)))throw Error('Configura DASHBOARD_REQUIRED_ROLE_IDS en .env');
+  return { token:env.DISCORD_TOKEN.trim(), guildId:env.DISCORD_GUILD_ID, dashboardRoleIds, roles,
     global:env.DISCORD_GLOBAL_COMMANDS==='true', presence:env.DISCORD_STATUS||'ArkMillennia Fenix' };
 }
 
@@ -38,7 +38,7 @@ class StandaloneBot {
       GatewayIntentBits.GuildMessageReactions,GatewayIntentBits.GuildVoiceStates,GatewayIntentBits.GuildModeration,GatewayIntentBits.GuildInvites,
       GatewayIntentBits.GuildExpressions,GatewayIntentBits.GuildWebhooks,GatewayIntentBits.GuildScheduledEvents,GatewayIntentBits.GuildIntegrations],
       partials:[Partials.Channel,Partials.Message,Partials.Reaction,Partials.User],allowedMentions:{parse:[],repliedUser:false},rest:{retries:0}});
-    this.modules=new ModuleManager(path.join(this.root,'bot/modules'),this.client,this.database,message=>this.log(message),this.config.roles,this.config.guildId,this.config.dashboardRoleId);
+    this.modules=new ModuleManager(path.join(this.root,'bot/modules'),this.client,this.database,message=>this.log(message),this.config.roles,this.config.guildId,this.config.dashboardRoleIds);
     this.registry=new CommandRegistry(this.client,this.config.guildId,this.database.namespace('runtime'),this.config.global);
     await this.registry.initialize();
     this.dashboard=new DashboardSystem({root:path.join(this.root,'bot'),client:this.client,guildId:this.config.guildId,

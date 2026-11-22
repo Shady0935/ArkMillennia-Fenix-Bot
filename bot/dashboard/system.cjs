@@ -17,10 +17,10 @@ function configuration(env) {
     || !Number.isInteger(sessionDays) || sessionDays < 1 || sessionDays > 90) throw Error('Configuración de dashboard inválida');
   const roles = (env.DASHBOARD_ADMIN_ROLE_IDS || '').split(',').map(v => v.trim()).filter(Boolean);
   if (roles.some(id => !/^[0-9]{17,20}$/.test(id))) throw Error('Rol de dashboard inválido');
-  const requiredRoleId = String(env.DASHBOARD_REQUIRED_ROLE_ID || '').trim();
-  if (!/^[0-9]{17,20}$/.test(requiredRoleId)) throw Error('Configura DASHBOARD_REQUIRED_ROLE_ID con el rol autorizado');
+  const requiredRoleIds = String(env.DASHBOARD_REQUIRED_ROLE_IDS || env.DASHBOARD_REQUIRED_ROLE_ID || '').split(',').map(id => id.trim()).filter(Boolean);
+  if (!requiredRoleIds.length || requiredRoleIds.some(id => !/^[0-9]{17,20}$/.test(id))) throw Error('Configura DASHBOARD_REQUIRED_ROLE_IDS con los roles autorizados');
   return { enabled: env.DASHBOARD_ENABLED === 'true', host: env.DASHBOARD_HOST || '127.0.0.1', port, proxy, sessionDays,
-    publicUrl: url.origin, secure: url.protocol === 'https:', roles, requiredRoleId,
+    publicUrl: url.origin, secure: url.protocol === 'https:', roles, requiredRoleIds,
     clientId: env.DISCORD_OAUTH_CLIENT_ID || '', secret: env.DISCORD_OAUTH_CLIENT_SECRET || '' };
 }
 
@@ -50,9 +50,9 @@ class DashboardSystem {
     let member;
     try { member = await guild.members.fetch({ user: id, force: true }); }
     catch (error) { if (error.code === 10007) return null; throw error; }
-    if (!member.roles.cache.has(this.config.requiredRoleId)) return null;
+    if (!this.config.requiredRoleIds.some(roleId => member.roles.cache.has(roleId))) return null;
     const administrator = id === guild.ownerId || member.permissions.has(PermissionFlagsBits.Administrator)
-      || member.roles.cache.has(this.config.requiredRoleId)
+      || this.config.requiredRoleIds.some(roleId => member.roles.cache.has(roleId))
       || [...this.adminRoleIds, ...this.config.roles].some(role => member.roles.cache.has(role));
     const extensions = [];
     for (const { name } of this.descriptors()) {

@@ -29,7 +29,8 @@ class ModuleManager {
     this.log = log;
     this.adminRoleIds = adminRoleIds;
     this.guildId = guildId;
-    this.dashboardRoleId = dashboardRoleId;
+    this.dashboardRoleIds = Object.freeze((Array.isArray(dashboardRoleId) ? dashboardRoleId : dashboardRoleId ? [dashboardRoleId] : []).map(String));
+    this.dashboardRoleId = this.dashboardRoleIds[0] || '';
     this.providers = new Map();
     this.services = Object.freeze({
       get: name => this.service(name),
@@ -80,7 +81,7 @@ class ModuleManager {
       this.validate(module);
       const context = {
         client: this.client, storage: this.database.namespace(id),
-        guildId: this.guildId, dashboardRoleId: this.dashboardRoleId,
+        guildId: this.guildId, dashboardRoleId: this.dashboardRoleId, dashboardRoleIds: this.dashboardRoleIds,
         adminRoleIds: Object.freeze([...this.adminRoleIds]), services: this.services,
         provide: (name, value) => {
           if (!module.preparing || module.closed || name.startsWith('system:') || !/^[a-z][a-z0-9:._-]{0,63}$/.test(name) || !value || typeof value !== 'object') throw Error('Servicio inválido o registro fuera de setup');
