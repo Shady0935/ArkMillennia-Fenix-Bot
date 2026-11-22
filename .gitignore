@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+data/
+/logs/
+bot/logs/
+*.log
+coverage/
+build/
+dist/
+.DS_Store
+Thumbs.db
+
+# Public ARK catalog assets are versioned; runtime data/ stays ignored.
+!bot/features/ark/data/
+!bot/features/ark/data/*.json

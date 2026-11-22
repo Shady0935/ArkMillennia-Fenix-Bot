@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/BlommamPro/discord-dm-announcements-bot",
+  "commit": "9e9357185f7a62bfba0e0eb045b2689ff6c0c836",
+  "license_file": "MIT",
+  "package_metadata_license": "AGPL-3.0-or-later",
+  "adapted": [
+    "src/web/services/v2Builder.js",
+    "src/web/public"
+  ]
+}

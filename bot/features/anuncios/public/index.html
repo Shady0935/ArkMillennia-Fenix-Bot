@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Anuncios · Millennia Fenix Bot</title>
+  <link rel="stylesheet" href="/symbols.css?v=millenniafenix-5">
+  <link rel="stylesheet" href="style.css?v=millenniafenix-9">
+  <script defer src="app.js?v=millenniafenix-10"></script>
+</head>
+<body>
+  <header class="page-heading"><h1>Anuncios</h1><div class="heading-meta"><span id="page-estimate" class="quiet">0 imágenes · estimado: 1 mensaje</span><span id="sync-state" class="status-badge">Cargando</span><span class="subscriber-count"><strong id="count">—</strong> suscriptores</span></div></header>
+  <div id="notice" class="notice" role="status" hidden></div>
+  <div class="workspace">
+    <section class="editor panel" aria-labelledby="editor-title">
+      <div class="section-heading"><h2 id="editor-title">Mensaje</h2><span id="block-count" class="quiet">1 / 20 bloques</span></div>
+      <div id="blocks"></div>
+      <div class="add-block"><label class="visually-hidden" for="type">Tipo de bloque</label>
+        <select id="type"><option value="text">Texto</option><option value="title">Título</option><option value="image">Imagen</option><option value="gallery">Galería</option><option value="field">Campo</option><option value="separator">Separador</option><option value="button">Botón con enlace</option></select>
+        <button id="add" class="button secondary"><span class="material-symbols-outlined icon" aria-hidden="true">add</span>Añadir bloque</button>
+      </div>
+    </section>
+    <aside class="preview-column">
+      <section class="panel preview-panel" aria-labelledby="preview-title">
+        <div class="section-heading"><h2 id="preview-title">Vista previa</h2><label class="color-control" for="color">Color<input id="color" type="color" value="#8f1d3d"></label></div>
+        <div class="discord-preview"><div class="preview-identity"><span class="preview-avatar" aria-hidden="true"><span class="material-symbols-outlined icon">campaign</span></span><strong>Anuncio</strong><span class="discord-tag">BOT</span></div><div id="preview"></div></div>
+        <div class="send-section">
+          <button class="button secondary" id="test-send"><span class="material-symbols-outlined icon" aria-hidden="true">arrow_forward</span>Enviar prueba solo a mi cuenta</button>
+          <p class="test-help">Envía este borrador únicamente por DM a la cuenta conectada a la dashboard.</p>
+          <button class="button primary" id="send">Revisar envío<span class="material-symbols-outlined icon" aria-hidden="true">arrow_forward</span></button>
+          <div id="confirmation" class="confirmation" hidden><h3>Confirmar envío</h3><p id="confirm-text"></p><div class="confirmation-actions"><button id="back" class="button secondary">Volver</button><button id="confirm" class="button danger">Enviar anuncio</button></div></div>
+          <div id="progress" class="send-progress" hidden><div class="section-heading"><h3>Envío</h3><span id="progress-status" class="status-badge">En curso</span></div><progress id="bar" max="100" value="0" aria-label="Progreso del envío"></progress><p id="progress-text"></p><button id="cancel" class="button secondary">Cancelar envío</button></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+  <div class="settings-grid">
+    <details class="panel settings-panel"><summary><span>Consentimiento</span><span class="detail-toggle" aria-hidden="true">+</span></summary><div class="settings-body">
+      <dl id="config" class="config-list"></dl>
+      <form id="consent-form" class="consent-form">
+        <label class="field" for="consent-channel">ID del canal<input id="consent-channel" name="channelId" inputmode="numeric" autocomplete="off" required pattern="[0-9]{17,20}"></label>
+        <label class="field" for="consent-message">ID del mensaje<input id="consent-message" name="messageId" inputmode="numeric" autocomplete="off" required pattern="[0-9]{17,20}"></label>
+        <label class="field" for="consent-emoji">Reacción de consentimiento<input id="consent-emoji" name="emoji" maxlength="100" required></label>
+        <button id="save-consent" class="button secondary" type="submit"><span class="material-symbols-outlined icon" aria-hidden="true">save</span>Guardar y sincronizar</button>
+      </form>
+      <button id="sync" class="button secondary"><span class="material-symbols-outlined icon" aria-hidden="true">sync</span>Sincronizar de nuevo</button>
+    </div></details>
+    <details class="panel settings-panel"><summary><span>Imágenes</span><span id="uploads" class="quiet">—</span><span class="detail-toggle" aria-hidden="true">+</span></summary><div class="settings-body">
+      <div id="storage" class="storage-info"></div><p class="library-help">Las imágenes usadas en borradores o anuncios activos se conservan.</p><div id="upload-library" class="upload-library"></div>
+      <button id="cleanup" class="button secondary">Limpiar imágenes antiguas sin usar</button>
+    </div></details>
+  </div>
+  <section class="panel history" aria-labelledby="history-title"><div class="section-heading"><h2 id="history-title">Historial</h2><button id="refresh" class="icon-button" aria-label="Actualizar historial" title="Actualizar historial"><span class="material-symbols-outlined icon" aria-hidden="true">sync</span></button></div><div id="history"></div></section>
+</body>
+</html>

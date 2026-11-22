@@ -1,0 +1,708 @@
+.rolemanager-page {
+  display: grid;
+  width: 100%;
+  max-width: 1320px;
+  gap: 22px;
+  margin: 0 auto;
+  color: var(--ink);
+}
+
+.rolemanager-heading h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(25px, 3vw, 32px);
+  font-weight: 620;
+  letter-spacing: -.7px;
+  line-height: 1.18;
+}
+
+.rolemanager-heading .eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.rolemanager-description {
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rolemanager-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--line-neutral);
+  border-radius: 9px;
+  background: linear-gradient(110deg, var(--panel-raised), var(--panel));
+}
+
+.rolemanager-server-field {
+  display: grid;
+  min-width: min(100%, 430px);
+  gap: 7px;
+}
+
+.rolemanager-field-label {
+  color: var(--subtle);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.rolemanager-server-select,
+.rolemanager-search-input,
+.rolemanager-role-filter {
+  min-height: 42px;
+  border: 1px solid #ffffff20;
+  border-radius: 7px;
+  background: var(--input);
+  color: var(--ink);
+  font: 12px/1.4 var(--sans);
+}
+
+.rolemanager-server-select {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.rolemanager-server-select option {
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.rolemanager-server-badge {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+}
+
+.rolemanager-server-badge > .material-symbols-outlined {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #d22d4933;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  font-size: 20px;
+}
+
+.rolemanager-server-badge-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.rolemanager-server-badge-copy strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rolemanager-server-badge-copy span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.rolemanager-notice {
+  margin: -8px 0 0;
+  padding: 12px 15px;
+  border: 1px solid #d22d494a;
+  border-radius: 7px;
+  background: #d22d490c;
+  color: var(--accent-bright);
+  font-size: 13px;
+}
+
+.rolemanager-notice.error {
+  border-color: #e9a0a055;
+  background: #e9a0a00d;
+  color: #f0b1b1;
+}
+
+.rolemanager-notice.success {
+  border-color: #88b49b55;
+  background: #88b49b0d;
+  color: #a9d0b5;
+}
+
+.rolemanager-layout {
+  display: grid;
+  grid-template-columns: minmax(265px, 330px) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.rolemanager-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-neutral);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: 0 12px 36px #00000012;
+}
+
+.rolemanager-panel-heading {
+  display: flex;
+  min-height: 60px;
+  align-items: center;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line-neutral);
+}
+
+.rolemanager-panel-heading h2,
+.rolemanager-subheading h2,
+.rolemanager-subheading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.rolemanager-search-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 9px;
+  padding: 15px 16px 8px;
+}
+
+.rolemanager-search-input,
+.rolemanager-role-filter {
+  width: 100%;
+  min-width: 0;
+  padding: 0 12px;
+}
+
+.rolemanager-search-input::placeholder,
+.rolemanager-role-filter::placeholder {
+  color: var(--subtle);
+}
+
+.rolemanager-search-input:focus-visible,
+.rolemanager-role-filter:focus-visible,
+.rolemanager-server-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.rolemanager-page .button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 14px;
+  border: 1px solid var(--line-neutral);
+  border-radius: 7px;
+  background: var(--panel-raised);
+  color: var(--ink);
+  font: 560 12px/1 var(--sans);
+  white-space: nowrap;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+.rolemanager-page .button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #d22d4970;
+  background: #d22d490c;
+}
+
+.rolemanager-page .button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.rolemanager-page .button.primary {
+  border-color: #d22d4980;
+  background: linear-gradient(120deg, #e01f3f, #cd324c);
+  color: #230c10;
+  font-weight: 650;
+}
+
+.rolemanager-page .button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.rolemanager-search-hint {
+  min-height: 21px;
+  margin: 0;
+  padding: 0 17px 10px;
+  color: var(--subtle);
+  font-size: 11px;
+}
+
+.rolemanager-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 17px 9px;
+  border-top: 1px solid var(--line-neutral);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.rolemanager-results-count {
+  color: var(--subtle);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.rolemanager-results {
+  display: grid;
+  max-height: min(56vh, 520px);
+  overflow: auto;
+  padding: 0 9px 10px;
+}
+
+.rolemanager-user {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.rolemanager-user:hover,
+.rolemanager-user[aria-pressed="true"] {
+  border-color: #d22d4930;
+  background: #d22d490b;
+}
+
+.rolemanager-user-copy {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+
+.rolemanager-user-copy strong,
+.rolemanager-user-copy span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rolemanager-user-copy strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rolemanager-user-copy span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.rolemanager-user-role-count {
+  display: grid;
+  min-width: 25px;
+  height: 25px;
+  place-items: center;
+  padding: 0 6px;
+  border: 1px solid var(--line-neutral);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rolemanager-avatar {
+  position: relative;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  overflow: hidden;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.rolemanager-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rolemanager-avatar-fallback {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.rolemanager-empty-results {
+  margin: 0;
+  padding: 13px 9px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rolemanager-editor {
+  min-height: 390px;
+}
+
+.rolemanager-empty {
+  display: grid;
+  min-height: 390px;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 28px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.rolemanager-empty .material-symbols-outlined {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.rolemanager-empty strong {
+  max-width: 310px;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.rolemanager-member-heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 19px;
+  border-bottom: 1px solid var(--line-neutral);
+  background: linear-gradient(110deg, #d22d4909, transparent 65%);
+}
+
+.rolemanager-member-heading .rolemanager-avatar {
+  width: 46px;
+  height: 46px;
+  flex-basis: 46px;
+}
+
+.rolemanager-member-identity {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+}
+
+.rolemanager-member-identity strong,
+.rolemanager-member-identity span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rolemanager-member-identity strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.rolemanager-member-identity span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.rolemanager-page .rolemanager-change-user {
+  min-height: 35px;
+  padding: 0 11px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.rolemanager-roles-section {
+  padding: 18px 19px 20px;
+}
+
+.rolemanager-subheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rolemanager-subheading h3 {
+  font-size: 12px;
+}
+
+.rolemanager-role-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.rolemanager-role-chip {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border: 1px solid color-mix(in srgb, var(--role-color) 42%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--role-color) 10%, transparent);
+  color: var(--ink);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.rolemanager-role-chip > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rolemanager-color-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  border: 1px solid #ffffff24;
+  border-radius: 50%;
+  background: var(--role-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--role-color) 30%, transparent);
+}
+
+.rolemanager-muted {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.rolemanager-roles-section > .rolemanager-roles-heading {
+  align-items: flex-end;
+  margin-top: 21px;
+}
+
+.rolemanager-roles-heading h2 {
+  font-size: 14px;
+}
+
+.rolemanager-roles-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.rolemanager-role-filter {
+  max-width: 205px;
+  min-height: 38px;
+  font-size: 11px;
+}
+
+.rolemanager-permission-warning {
+  margin: 13px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #e9a0a055;
+  border-radius: 7px;
+  background: #e9a0a00d;
+  color: #efb3b3;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.rolemanager-role-list {
+  display: grid;
+  max-height: 520px;
+  overflow: auto;
+  margin-top: 14px;
+  border: 1px solid var(--line-neutral);
+  border-radius: 8px;
+}
+
+.rolemanager-role-row {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 11px;
+  border-bottom: 1px solid #ffffff0b;
+  border-left: 2px solid transparent;
+}
+
+.rolemanager-role-row:last-child {
+  border-bottom: 0;
+}
+
+.rolemanager-role-row.assigned {
+  border-left-color: var(--role-color);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--role-color) 7%, transparent), transparent 55%);
+}
+
+.rolemanager-role-details {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+}
+
+.rolemanager-role-name {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 550;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rolemanager-role-state {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border: 1px solid var(--line-neutral);
+  border-radius: 999px;
+  color: var(--subtle);
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.rolemanager-role-state.is-assigned {
+  border-color: color-mix(in srgb, var(--role-color) 45%, transparent);
+  background: color-mix(in srgb, var(--role-color) 12%, transparent);
+  color: var(--ink);
+}
+
+.rolemanager-locked {
+  flex: 0 0 auto;
+  color: var(--subtle);
+  font-size: 10px;
+  text-align: right;
+}
+
+.rolemanager-page .button.small {
+  min-height: 33px;
+  padding: 0 10px;
+  font-size: 10px;
+}
+
+.rolemanager-page .button.danger {
+  border-color: #e9a0a044;
+  background: #e9a0a010;
+  color: #efb7b7;
+}
+
+.rolemanager-page .button.danger:hover:not(:disabled) {
+  border-color: #e9a0a099;
+  background: #e9a0a01b;
+}
+
+@media (max-width: 1050px) {
+  .rolemanager-layout {
+    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .rolemanager-roles-heading {
+    align-items: flex-start !important;
+    flex-direction: column;
+  }
+
+  .rolemanager-role-filter {
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .rolemanager-page {
+    gap: 16px;
+  }
+
+  .rolemanager-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 13px;
+    padding: 14px;
+  }
+
+  .rolemanager-server-field {
+    min-width: 0;
+  }
+
+  .rolemanager-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rolemanager-results {
+    max-height: 270px;
+  }
+
+  .rolemanager-editor,
+  .rolemanager-empty {
+    min-height: 270px;
+  }
+}
+
+@media (max-width: 500px) {
+  .rolemanager-search-form {
+    grid-template-columns: 1fr;
+  }
+
+  .rolemanager-search-form .button {
+    width: 100%;
+  }
+
+  .rolemanager-member-heading {
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+
+  .rolemanager-member-heading .rolemanager-change-user {
+    width: 100%;
+  }
+
+  .rolemanager-roles-section {
+    padding: 15px 13px 16px;
+  }
+
+  .rolemanager-role-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .rolemanager-role-details {
+    flex: 1 1 calc(100% - 5px);
+  }
+
+  .rolemanager-role-row > .button,
+  .rolemanager-locked {
+    margin-left: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rolemanager-page .button {
+    transition: none;
+  }
+}
+
