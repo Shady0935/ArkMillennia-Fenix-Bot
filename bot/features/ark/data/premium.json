@@ -1,0 +1,105 @@
+{
+  "points": [
+    {
+      "usd": 2.5,
+      "points": 4000
+    },
+    {
+      "usd": 5,
+      "points": 8500
+    },
+    {
+      "usd": 10,
+      "points": 18000
+    },
+    {
+      "usd": 15,
+      "points": 26000
+    },
+    {
+      "usd": 20,
+      "points": 40000
+    },
+    {
+      "usd": 25,
+      "points": 50000
+    },
+    {
+      "usd": 35,
+      "points": 70000
+    }
+  ],
+  "kits": [
+    {
+      "name": "Explorador",
+      "usd": 2.5,
+      "points": 3250,
+      "dinoCount": 1,
+      "tier": 1,
+      "armor": "Cuero · verde",
+      "weapons": "1 arma a elección · primitiva",
+      "saddles": "1 montura · verde"
+    },
+    {
+      "name": "Colono",
+      "usd": 5,
+      "points": 6500,
+      "dinoCount": 2,
+      "tier": 1,
+      "armor": "Quitina · azul",
+      "weapons": "1 arma a elección · verde",
+      "saddles": "2 monturas · azules"
+    },
+    {
+      "name": "Aventurero",
+      "usd": 10,
+      "points": 13000,
+      "dinoCount": 1,
+      "tier": 2,
+      "armor": "Quitina · morada",
+      "weapons": "1 arma a elección · azul",
+      "saddles": "1 montura · morada"
+    },
+    {
+      "name": "Conquistador",
+      "usd": 15,
+      "points": 19500,
+      "dinoCount": 2,
+      "tier": 3,
+      "armor": "Metal · azul",
+      "weapons": "1 arma a elección · morada",
+      "saddles": "2 monturas · moradas"
+    },
+    {
+      "name": "Dominador",
+      "usd": 20,
+      "points": 26000,
+      "dinoCount": 1,
+      "tier": 4,
+      "armor": "Metal · morada",
+      "weapons": "1 arma a elección · amarilla",
+      "saddles": "2 monturas · amarillas"
+    },
+    {
+      "name": "Ascendente",
+      "usd": 25,
+      "points": 32500,
+      "dinoCount": 2,
+      "tier": 4,
+      "armor": "Antidisturbios · morada",
+      "weapons": "1 arma a elección · ascendente",
+      "saddles": "2 monturas · amarillas"
+    },
+    {
+      "name": "Leyenda",
+      "usd": 35,
+      "points": 45500,
+      "dinoCount": 2,
+      "tier": 5,
+      "armor": "Antidisturbios · maestro artesano",
+      "weapons": "2 armas a elección · ascendentes",
+      "saddles": "2 monturas · ascendentes"
+    }
+  ]
+}
+
