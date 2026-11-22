@@ -90,7 +90,16 @@
     }
   }
   function updateControl() {
-    icon.textContent = paused ? 'play_arrow' : 'pause';
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '14');
+    svg.setAttribute('height', '14');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('fill', 'currentColor');
+    path.setAttribute('d', paused ? 'M8 5v14l11-7z' : 'M6 5h4v14H6zm8 0h4v14h-4z');
+    svg.append(path);
+    icon.replaceChildren(svg);
     label.textContent = paused ? 'Reanudar animación' : 'Pausar animación';
     toggle.setAttribute('aria-label', paused ? 'Reanudar animación del fondo' : 'Pausar animación del fondo');
     toggle.setAttribute('aria-pressed', String(paused));

@@ -45,7 +45,7 @@ export async function mount(root, { api, icon, module }) {
     const warning = el('div', 'invite-tracker-warning');
     warning.append(icon(missing.length ? 'warning' : 'info'), el('span', '', missing.length
       ? `No se puede activar todavía. Falta: ${missing.join('; ')}.`
-      : 'Discord no expone el código usado en la entrada: si varios invites cambian a la vez, se marcará como «no identificado» para no adjudicarlo mal. El conteo comienza al activar el módulo; no se reconstruyen entradas pasadas.'));
+      : 'El evento de entrada de la API para bots no incluye el código de invitación. Discord sí puede mostrar ese dato en su lista de miembros; este tracker lo calcula comparando usos. Si coinciden varios cambios, marcará la entrada como «no identificada» para evitar atribuirla mal. El conteo empieza al activar el módulo y no reconstruye entradas anteriores.'));
     panel.append(warning);
     if (capabilities.inviteManageChannels === 0) {
       const caveat = el('div', 'invite-tracker-caveat'); caveat.append(icon('info'), el('span', '', 'Sin «Administrar canales» en los canales de invitación, Discord puede no enviar eventos de creación/eliminación y una invitación nueva durante el seguimiento podría quedar sin atribución.')); panel.append(caveat);
